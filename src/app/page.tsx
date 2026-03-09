@@ -3,6 +3,43 @@ import { ArrowUpRight, Phone, MapPin, Calendar, Lock, Sparkles, MessageCircle, H
 export default function HomePage() {
     return (
         <div style={{ position: 'relative' }}>
+            {/* Hidden FAQ Schema for Featured Snippets */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": [
+                            {
+                                "@type": "Question",
+                                "name": "¿Cuál es el valor de la sesión de psicoterapia individual en Concepción?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "La sesión de psicoterapia individual tiene un valor de $65.000 (CLP). Es un servicio premium enfocado en alta exigencia y confidencialidad."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "¿Cuál es el costo de la terapia de pareja en Concepción?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "La terapia matrimonial y de vínculos (terapia de pareja) tiene una inversión de $75.000 (CLP) por sesión, con dedicación exclusiva y metodologías clínicas rigurosas."
+                                }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "¿Dónde atiende el Ps. Claudio Fernández en Concepción?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "Atiende de forma presencial en dos sedes: Concepción Centro (Barros Arana 188) los días Lunes, Miércoles y Viernes, y en San Pedro de la Paz (Andalué) los días Martes."
+                                }
+                            }
+                        ]
+                    })
+                }}
+            />
+
             {/* Immersive Hero Section */}
             <section id="inicio" style={{
                 position: 'relative',
@@ -102,7 +139,7 @@ export default function HomePage() {
 
                     {/* Card 1: The Portrait (Visual Excellence) */}
                     <div className="dark-card" style={{ gridColumn: 'span 5', gridRow: 'span 2', overflow: 'hidden', position: 'relative', minHeight: '600px' }}>
-                        <img src="/claudio-portrait.png" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
+                        <img src="/claudio-portrait.png" alt="Retrato profesional del Ps. Claudio Fernández, psicólogo clínico en su consulta premium de Concepción y Andalué" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
                         <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem' }}>
                             <h3 className="instrument-serif" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Ciencia y Empatía</h3>
                             <p style={{ opacity: 0.6, fontSize: '1rem', fontWeight: 300 }}>Especialista en procesos críticos y alto desempeño emocional.</p>
@@ -202,7 +239,17 @@ export default function HomePage() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '4rem' }}>
                     <div>
                         <h2 className="instrument-serif" style={{ fontSize: '3rem' }}>Claudio Fernández</h2>
-                        <p style={{ opacity: 0.5, marginTop: '1rem' }}>Psicólogo Clínico · Concepción · {new Date().getFullYear()}</p>
+                        <p style={{ opacity: 0.5, marginTop: '1rem', marginBottom: '1rem' }}>Psicólogo Clínico · Concepción · {new Date().getFullYear()}</p>
+
+                        {/* E-E-A-T Credential Badges */}
+                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0,0,0,0.03)', padding: '0.5rem 1rem', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+                                <CheckCircle2 size={14} color="var(--accent-sage)" /> Profesional Acreditado
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0,0,0,0.03)', padding: '0.5rem 1rem', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+                                <Lock size={14} color="var(--accent-sage)" /> Secreto Profesional Garantizado
+                            </div>
+                        </div>
                     </div>
                     <div style={{ display: 'flex', gap: '4rem' }}>
                         <div style={{ textAlign: 'right' }}>

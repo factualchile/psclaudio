@@ -1,5 +1,4 @@
-import '../globals.css';
-import { Heart, CheckCircle2, MapPin, ArrowUpRight, MessageCircle, ShieldCheck } from 'lucide-react';
+import { Heart, CheckCircle2, MapPin, ArrowUpRight, MessageCircle, ShieldCheck, Lock } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -175,6 +174,17 @@ export default function TerapiaParejaPage() {
             <footer style={{ padding: '4rem 4vw', background: 'white', borderTop: '1px solid rgba(0,0,0,0.05)', textAlign: 'center' }}>
                 <h2 className="instrument-serif" style={{ fontSize: '2rem' }}>Claudio Fernández</h2>
                 <p style={{ opacity: 0.5, marginTop: '0.5rem', fontSize: '0.9rem' }}>Psicólogo Clínico Especialista en Terapia de Pareja · Concepción</p>
+
+                {/* E-E-A-T Credential Badges */}
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0,0,0,0.03)', padding: '0.5rem 1rem', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+                        <CheckCircle2 size={14} color="var(--accent-sage)" /> Profesional Acreditado
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0,0,0,0.03)', padding: '0.5rem 1rem', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+                        <Lock size={14} color="var(--accent-sage)" /> Secreto Profesional Garantizado
+                    </div>
+                </div>
+
                 <div style={{ marginTop: '2rem' }}>
                     <a href="/" style={{ color: 'var(--accent-sage)', textDecoration: 'none', fontWeight: 500 }}>← Volver al Inicio</a>
                 </div>
