@@ -1,0 +1,119 @@
+:root {
+  /* Color Palette - Premium & Serene */
+  --primary: #1a2f2c; /* Deep Forest Green */
+  --primary-light: #2d4a46;
+  --accent: #c4a484; /* Soft Gold / Warm Sand */
+  --accent-light: #d4bc9c;
+  --bg-serene: #faf9f6; /* Off-white with warmth */
+  --text-main: #2d3e40;
+  --text-soft: #6b7a7c;
+  --white: #ffffff;
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Layout */
+  --radius-lg: 24px;
+  --radius-sm: 8px;
+  --shadow-premium: 0 20px 40px rgba(26, 47, 44, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-serene);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Glassmorphism Classes */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 1.2rem 2.5rem;
+  border-radius: var(--radius-lg);
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(26, 47, 44, 0.15);
+  background-color: var(--primary-light);
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  color: var(--white);
+  padding: 1rem 2rem;
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-light);
+}
+
+/* Responsive Grid */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 968px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
