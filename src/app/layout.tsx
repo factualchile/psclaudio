@@ -61,7 +61,7 @@ export default function RootLayout({
           alignItems: 'center',
           border: '1px solid rgba(255,255,255,0.1)'
         }}>
-          <div className="instrument-serif" style={{ fontSize: '1.6rem', color: 'var(--primary)', letterSpacing: '-0.02em', color: '#1a1a1a' }}>
+          <div className="instrument-serif" style={{ fontSize: '1.6rem', color: '#1a1a1a', letterSpacing: '-0.02em' }}>
             Ps. Claudio Fernández
           </div>
           <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
