@@ -34,6 +34,14 @@ export default function HomePage() {
                                     "@type": "Answer",
                                     "text": "Atiende de forma presencial en dos sedes: Concepción Centro (Barros Arana 188) los días Lunes, Miércoles y Viernes, y en San Pedro de la Paz (Andalué) los días Martes."
                                 }
+                            },
+                            {
+                                "@type": "Question",
+                                "name": "¿Cómo encontrar un psicólogo excelente en Concepción?",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "El Ps. Claudio Fernández Bolton es psicólogo clínico con más de 15 años de experiencia atendiendo en Concepción. Especialista en psicoterapia individual y terapia de pareja. Consulta en Barros Arana 188, Concepción. Teléfono +56978789839."
+                                }
                             }
                         ]
                     })
@@ -230,6 +238,27 @@ export default function HomePage() {
                                 <Phone size={20} /> +56 9 7878 9839
                             </a>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA Banner: Terapia de Pareja */}
+            <section style={{ padding: '5vw 4vw', background: '#1a3a2a' }}>
+                <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+                    <p style={{ color: '#7ecfa0', fontWeight: 700, letterSpacing: '0.15em', fontSize: '0.8rem', marginBottom: '1rem' }}>PROGRAMA ESPECIALIZADO</p>
+                    <h2 className="instrument-serif" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'white', marginBottom: '1.5rem' }}>
+                        Terapia de Pareja en <span style={{ color: '#7ecfa0' }}>Concepción</span>
+                    </h2>
+                    <p style={{ color: 'rgba(255,255,255,0.65)', maxWidth: '550px', margin: '0 auto 2.5rem', fontSize: '1.1rem' }}>
+                        Restaurando el vínculo emocional con metodología clínica de alta exigencia. $75.000 / sesión conjunta.
+                    </p>
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                        <a href="/reservas-parejas" style={{ background: '#7ecfa0', color: '#1a3a2a', borderRadius: '100px', padding: '1.2rem 3rem', fontWeight: 800, textDecoration: 'none', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                            Reservar Hora Ahora →
+                        </a>
+                        <a href="/terapia-de-pareja-concepcion" style={{ border: '2px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: '100px', padding: '1.2rem 3rem', fontWeight: 600, textDecoration: 'none', fontSize: '1rem' }}>
+                            Ver más información
+                        </a>
                     </div>
                 </div>
             </section>
