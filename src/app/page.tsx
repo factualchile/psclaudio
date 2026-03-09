@@ -8,7 +8,7 @@ export default function HomePage() {
                 position: 'relative',
                 minHeight: '100vh',
                 background: '#0a0b0a',
-                padding: '0 4vw',
+                padding: '12rem 4vw 6rem',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -40,7 +40,7 @@ export default function HomePage() {
                                 <span style={{ color: 'var(--accent-gold)', textTransform: 'uppercase', letterSpacing: '0.4em', fontSize: '0.75rem', fontWeight: 600 }}>Psicología de Alta Fidelidad</span>
                             </div>
 
-                            <h1 className="instrument-serif" style={{ fontSize: 'clamp(4rem, 12vw, 8.5rem)', color: 'white', lineHeight: '0.9', letterSpacing: '-0.03em' }}>
+                            <h1 className="instrument-serif" style={{ fontSize: 'clamp(3.5rem, 10vw, 7.5rem)', color: 'white', lineHeight: '1', letterSpacing: '-0.03em' }}>
                                 Ps. Claudio <br />
                                 <span style={{ fontStyle: 'italic', opacity: 0.8 }}>Fernández</span>
                             </h1>
@@ -127,12 +127,17 @@ export default function HomePage() {
                     </div>
 
                     {/* Card 3: Couples Therapy */}
-                    <div className="glass-modern" style={{ gridColumn: 'span 4', padding: '3rem' }}>
-                        <Heart size={32} color="var(--accent-gold)" style={{ marginBottom: '2rem' }} />
-                        <h3 className="instrument-serif" style={{ fontSize: '2rem', marginBottom: '1rem' }}>Terapia de Pareja</h3>
-                        <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>Restaurando la arquitectura del vínculo afectivo.</p>
-                        <div style={{ marginTop: '2rem', fontWeight: 600 }}>75k / sesión</div>
-                    </div >
+                    <a href="/terapia-de-pareja-concepcion" style={{ textDecoration: 'none', color: 'inherit', gridColumn: 'span 4', display: 'block' }} className="hover-scale">
+                        <div className="glass-modern" style={{ padding: '3rem', height: '100%' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+                                <Heart size={32} color="var(--accent-gold)" />
+                                <ArrowUpRight size={24} color="var(--accent-gold)" style={{ opacity: 0.5 }} />
+                            </div>
+                            <h3 className="instrument-serif" style={{ fontSize: '2rem', marginBottom: '1rem' }}>Terapia de Pareja</h3>
+                            <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>Restaurando la arquitectura del vínculo afectivo.</p>
+                            <div style={{ marginTop: '2rem', fontWeight: 600 }}>75k / sesión</div>
+                        </div>
+                    </a>
 
                     {/* Card 4: Location A */}
                     <div className="glass-modern" style={{ gridColumn: 'span 3', padding: '3rem', background: 'var(--bg-dark)', color: 'white' }}>
