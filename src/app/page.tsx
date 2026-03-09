@@ -1,227 +1,213 @@
-import { MapPin, Clock, Phone, ArrowRight, ShieldCheck, Heart, User, Building, Lock } from 'lucide-react';
+import { ArrowUpRight, Phone, MapPin, Calendar, Lock, Sparkles, MessageCircle, Heart, User, CheckCircle2 } from 'lucide-react';
 
 export default function HomePage() {
     return (
-        <main>
-            {/* Hero Section - High End Minimalist */}
+        <div style={{ position: 'relative' }}>
+            {/* Immersive Hero Section */}
             <section id="inicio" style={{
+                position: 'relative',
                 minHeight: '100vh',
+                background: '#0a0b0a',
+                padding: '0 4vw',
                 display: 'flex',
-                alignItems: 'center',
-                padding: '0 8%',
-                background: 'linear-gradient(rgba(252, 251, 249, 0.9), rgba(252, 251, 249, 0.7)), url("/office-view.png")',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                position: 'relative'
+                flexDirection: 'column',
+                justifyContent: 'center',
+                overflow: 'hidden'
             }}>
-                <div className="container animate-fade-in">
-                    <div style={{ maxWidth: '900px' }}>
-                        <span className="sub-header">Práctica Privada en Concepción</span>
+                {/* Background Immersive Image */}
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundImage: 'url("/abstract-hero.png")',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    opacity: 0.5,
+                    zIndex: 0,
+                    filter: 'blur(100px) saturate(1.5)',
+                    transform: 'scale(1.2)'
+                }}></div>
 
-                        <h1 style={{ fontSize: 'clamp(3.5rem, 10vw, 6rem)', lineHeight: '1', marginBottom: '3rem', color: 'var(--primary)' }}>
-                            La excelencia académica <br /><span style={{ color: 'var(--accent)', fontStyle: 'italic' }}>al servicio de su bienestar.</span>
-                        </h1>
+                <div className="reveal" style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
+                    <div className="bento-grid">
 
-                        <p style={{ fontSize: '1.4rem', color: 'var(--text-soft)', maxWidth: '650px', marginBottom: '4rem', fontWeight: '300', lineHeight: '1.8' }}>
-                            Un espacio de alta confidencialidad y rigor clínico diseñado para quienes exigen un estándar superior en su proceso de salud mental.
-                        </p>
-
-                        <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
-                            <a href="https://wa.me/56978789839" className="btn-primary">
-                                Iniciar Proceso Privado
-                            </a>
-                            <a href="#servicios" style={{
-                                color: 'var(--primary)',
-                                textDecoration: 'none',
-                                fontSize: '0.85rem',
-                                letterSpacing: '0.15em',
-                                textTransform: 'uppercase',
-                                fontWeight: '600',
-                                borderBottom: '1px solid var(--accent)',
-                                paddingBottom: '5px'
-                            }}>Explorar Áreas Clinicas</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Discretion Section - ABC1 Priority */}
-            <section style={{ backgroundColor: 'var(--primary)', color: 'var(--white)', padding: '6rem 0' }}>
-                <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '3rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                        <Lock size={32} color="var(--accent)" />
-                        <div>
-                            <h4 className="serif" style={{ fontSize: '1.4rem' }}>Absoluta Discreción</h4>
-                            <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>Protocolos de privacidad rigurosos.</p>
-                        </div>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                        <Clock size={32} color="var(--accent)" />
-                        <div>
-                            <h4 className="serif" style={{ fontSize: '1.4rem' }}>Agendas Espaciadas</h4>
-                            <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>Garantía de flujo sin contacto entre consultantes.</p>
-                        </div>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                        <ShieldCheck size={32} color="var(--accent)" />
-                        <div>
-                            <h4 className="serif" style={{ fontSize: '1.4rem' }}>Rigor Profesional</h4>
-                            <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>Enfoque clínico basado en evidencia.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* About Section with Portrait */}
-            <section className="section-padding" style={{ backgroundColor: 'var(--white)' }}>
-                <div className="container">
-                    <div className="grid-2">
-                        <div style={{ position: 'relative' }}>
-                            <img src="/claudio-portrait.png" alt="Ps. Claudio Fernández" style={{ width: '100%', borderRadius: '0', boxShadow: 'var(--shadow-premium)' }} />
-                            <div style={{
-                                position: 'absolute',
-                                bottom: '-30px',
-                                right: '-30px',
-                                backgroundColor: 'var(--bg-serene)',
-                                padding: '3rem',
-                                maxWidth: '350px',
-                                border: '1px solid rgba(0,0,0,0.05)'
-                            }}>
-                                <p className="serif" style={{ fontSize: '1.2rem', fontStyle: 'italic', color: 'var(--primary)' }}>
-                                    "La elegancia de la salud mental reside en la capacidad de integrar nuestras sombras con nuestra luz."
-                                </p>
+                        {/* Main Title Block */}
+                        <div style={{ gridColumn: 'span 8', padding: '4rem 0' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+                                <span style={{ height: '1px', width: '40px', background: 'var(--accent-gold)' }}></span>
+                                <span style={{ color: 'var(--accent-gold)', textTransform: 'uppercase', letterSpacing: '0.4em', fontSize: '0.75rem', fontWeight: 600 }}>Psicología de Alta Fidelidad</span>
                             </div>
-                        </div>
-                        <div>
-                            <span className="sub-header">Experiencia y Trayectoria</span>
-                            <h2 style={{ fontSize: '3.5rem', marginBottom: '2rem' }}>Ps. Claudio Fernández</h2>
-                            <p style={{ fontSize: '1.2rem', color: 'var(--text-soft)', marginBottom: '2rem' }}>
-                                Con años de práctica clínica dedicada al acompañamiento de individuos en roles de alta exigencia, entiendo los desafíos específicos de quienes lideran entornos complejos.
-                            </p>
-                            <p style={{ fontSize: '1.2rem', color: 'var(--text-soft)', marginBottom: '3rem' }}>
-                                Mi enfoque combina el rigor de la teoría clínica con una calidez humana genuina, ofreciendo un refugio intelectual y emocional para procesar lo que otros no ven.
-                            </p>
-                            <a href="https://wa.me/56978789839" className="btn-accent">Línea Directa de Consultas</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            {/* Services Section - Redefined as Investment */}
-            <section id="servicios" className="section-padding" style={{ backgroundColor: 'var(--bg-serene)' }}>
-                <div className="container">
-                    <div style={{ textAlign: 'center', marginBottom: '8rem' }}>
-                        <span className="sub-header">Servicios Exclusivos</span>
-                        <h2 style={{ fontSize: '4rem' }}>Modalidades de Trabajo</h2>
-                    </div>
+                            <h1 className="instrument-serif" style={{ fontSize: 'clamp(4rem, 12vw, 8.5rem)', color: 'white', lineHeight: '0.9', letterSpacing: '-0.03em' }}>
+                                Ps. Claudio <br />
+                                <span style={{ fontStyle: 'italic', opacity: 0.8 }}>Fernández</span>
+                            </h1>
 
-                    <div className="grid-2">
-                        {/* Individual */}
-                        <div style={{
-                            padding: '5rem',
-                            backgroundColor: 'var(--white)',
-                            textAlign: 'center',
-                            border: '1px solid rgba(0,0,0,0.05)',
-                            transition: 'transform 0.4s ease'
-                        }}>
-                            <User size={40} color="var(--accent)" style={{ marginBottom: '2rem' }} />
-                            <h3 className="serif" style={{ fontSize: '2.2rem', marginBottom: '1.5rem' }}>Psicoterapia Individual</h3>
-                            <p style={{ color: 'var(--text-soft)', fontSize: '1.1rem', marginBottom: '3rem' }}>
-                                Un proceso de síntesis personal para abordar las presiones modernas, el estrés ejecutivo y el autoconocimiento profundo.
-                            </p>
-                            <div className="price-tag">Inversión por sesión: $65.000</div>
-                        </div>
-
-                        {/* Couple */}
-                        <div style={{
-                            padding: '5rem',
-                            backgroundColor: 'var(--white)',
-                            textAlign: 'center',
-                            border: '1px solid rgba(0,0,0,0.05)',
-                            transition: 'transform 0.4s ease'
-                        }}>
-                            <Heart size={40} color="var(--accent)" style={{ marginBottom: '2rem' }} />
-                            <h3 className="serif" style={{ fontSize: '2.2rem', marginBottom: '1.5rem' }}>Dirección de Vínculos</h3>
-                            <p style={{ color: 'var(--text-soft)', fontSize: '1.1rem', marginBottom: '3rem' }}>
-                                Intervenciones estratégicas para parejas que buscan restaurar la armonía, la comunicación y el propósito compartido.
-                            </p>
-                            <div className="price-tag">Inversión por sesión: $75.000</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Locations & Contact */}
-            <section id="contacto" className="section-padding" style={{ backgroundColor: 'var(--white)' }}>
-                <div className="container">
-                    <div className="grid-2">
-                        <div>
-                            <span className="sub-header">Acceso Preferencial</span>
-                            <h2 style={{ fontSize: '3.5rem', marginBottom: '3.5rem' }}>Sedes de Atención</h2>
-
-                            <div style={{ marginBottom: '4rem' }}>
-                                <div style={{ padding: '2.5rem', borderLeft: '1px solid var(--accent)', marginBottom: '2rem' }}>
-                                    <h4 className="serif" style={{ fontSize: '1.6rem', marginBottom: '1rem' }}>Sede Financiera Concepción</h4>
-                                    <p style={{ color: 'var(--text-soft)', marginBottom: '1rem' }}>Barros Arana 188, Concepción</p>
-                                    <div style={{ display: 'flex', gap: '1rem', color: 'var(--primary)', fontWeight: '600', fontSize: '0.9rem' }}>
-                                        <Clock size={16} color="var(--accent)" /> Lunes, Miércoles y Viernes: 09:15 - 21:30
-                                    </div>
-                                </div>
-
-                                <div style={{ padding: '2.5rem', borderLeft: '1px solid var(--accent)' }}>
-                                    <h4 className="serif" style={{ fontSize: '1.6rem', marginBottom: '1rem' }}>Sede Andalué Privada</h4>
-                                    <p style={{ color: 'var(--text-soft)', marginBottom: '1rem' }}>San Pedro de la Paz</p>
-                                    <div style={{ display: 'flex', gap: '1rem', color: 'var(--primary)', fontWeight: '600', fontSize: '0.9rem' }}>
-                                        <Clock size={16} color="var(--accent)" /> Martes: 09:15 - 20:00
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style={{
-                            backgroundColor: 'var(--primary)',
-                            color: 'var(--white)',
-                            padding: '6rem 4rem',
-                            textAlign: 'center',
-                            position: 'relative',
-                            overflow: 'hidden'
-                        }}>
-                            <div style={{ position: 'relative', zIndex: 1 }}>
-                                <span className="sub-header" style={{ color: 'var(--accent)' }}>Concierge Digital</span>
-                                <h3 className="serif" style={{ fontSize: '2.8rem', marginBottom: '2rem' }}>Línea de Contacto <br />Directa</h3>
-                                <p style={{ opacity: 0.7, marginBottom: '4rem', maxWidth: '400px', margin: '0 auto 4rem' }}>
-                                    Su consulta será atendida con absoluta reserva. Puede iniciar el contacto vía WhatsApp o llamada telefónica.
-                                </p>
-
-                                <a href="https://wa.me/56978789839" className="btn-primary" style={{ backgroundColor: 'var(--accent)', color: 'var(--primary)', fontWeight: '800', width: '100%', fontSize: '1.1rem' }}>
-                                    <Phone size={20} style={{ marginRight: '1rem' }} /> +56 9 7878 9839
+                            <div style={{ marginTop: '4rem', display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
+                                <a href="https://wa.me/56978789839" className="magnetic-btn">
+                                    Agendar Sesión <ArrowUpRight size={20} />
                                 </a>
+                                <div className="glass-modern" style={{ padding: '1.2rem 2.5rem', display: 'flex', alignItems: 'center', gap: '1rem', color: 'white', borderColor: 'rgba(255,255,255,0.1)' }}>
+                                    <div style={{ width: '8px', height: '8px', background: '#4ade80', borderRadius: '50%', boxShadow: '0 0 10px #4ade80' }}></div>
+                                    <span style={{ fontSize: '0.9rem', letterSpacing: '0.1em', fontWeight: 300 }}>DISPONIBILIDAD PARA ESTA SEMANA</span>
+                                </div>
                             </div>
+                        </div>
 
-                            {/* Decorative accent */}
-                            <div style={{
-                                position: 'absolute',
-                                top: '-50px',
-                                right: '-50px',
-                                width: '150px',
-                                height: '150px',
-                                border: '2px solid rgba(184, 151, 113, 0.1)',
-                                borderRadius: '50%'
-                            }}></div>
+                        {/* Side Floating Badge */}
+                        <div style={{ gridColumn: 'span 4', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                            <div className="float" style={{
+                                width: '300px',
+                                height: '300px',
+                                borderRadius: '50%',
+                                border: '1px solid rgba(255,255,255,0.1)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                background: 'rgba(255,255,255,0.02)',
+                                backdropFilter: 'blur(20px)'
+                            }}>
+                                <div style={{ textAlign: 'center' }}>
+                                    <Sparkles color="var(--accent-gold)" size={40} style={{ marginBottom: '1rem' }} />
+                                    <p className="instrument-serif" style={{ color: 'white', fontSize: '1.5rem', fontStyle: 'italic' }}>Discreción <br />Absoluta</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                {/* Scroll Indicator */}
+                <div style={{
+                    position: 'absolute',
+                    bottom: '4rem',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    opacity: 0.5
+                }}>
+                    <p style={{ color: 'white', fontSize: '0.7rem', letterSpacing: '0.3em' }}>SCROLL</p>
+                    <div style={{ height: '60px', width: '1px', background: 'linear-gradient(to bottom, white, transparent)' }}></div>
+                </div>
+            </section>
+
+            {/* 2026 Bento Overview */}
+            <section style={{ padding: '4vw', background: 'var(--bg-canvas)' }}>
+                <div className="bento-grid">
+
+                    {/* Card 1: The Portrait (Visual Excellence) */}
+                    <div className="dark-card" style={{ gridColumn: 'span 5', gridRow: 'span 2', overflow: 'hidden', position: 'relative', minHeight: '600px' }}>
+                        <img src="/claudio-portrait.png" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
+                        <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem' }}>
+                            <h3 className="instrument-serif" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Ciencia y Empatía</h3>
+                            <p style={{ opacity: 0.6, fontSize: '1rem', fontWeight: 300 }}>Especialista en procesos críticos y alto desempeño emocional.</p>
+                        </div>
+                    </div>
+
+                    {/* Card 2: Individual Therapy */}
+                    <div className="glass-modern" style={{ gridColumn: 'span 7', padding: '4rem', position: 'relative' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                            <div>
+                                <span style={{ padding: '0.5rem 1rem', border: '1px solid var(--accent-sage)', borderRadius: '100px', fontSize: '0.7rem', letterSpacing: '0.1em' }}>ÁREA INDIVIDUAL</span>
+                                <h2 className="instrument-serif" style={{ fontSize: '4rem', marginTop: '2rem', marginBottom: '1.5rem' }}>Psicoterapia Individual</h2>
+                            </div>
+                            <User size={60} strokeWidth={1} color="var(--accent-sage)" />
+                        </div>
+                        <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', maxWidth: '500px' }}>
+                            Redefina su trayectoria personal. Un espacio de alta fidelidad para el ejecutivo y el profesional que busca claridad.
+                        </p>
+                        <div style={{ marginTop: '3rem', fontSize: '1.8rem' }} className="instrument-serif">
+                            65k / sesión <span style={{ fontSize: '0.8rem', opacity: 0.5, fontStyle: 'italic' }}>Inversión sugerida</span>
+                        </div>
+                    </div>
+
+                    {/* Card 3: Couples Therapy */}
+                    <div className="glass-modern" style={{ gridColumn: 'span 4', padding: '3rem' }}>
+                        <Heart size={32} color="var(--accent-gold)" style={{ marginBottom: '2rem' }} />
+                        <h3 className="instrument-serif" style={{ fontSize: '2rem', marginBottom: '1rem' }}>Terapia de Pareja</h3>
+                        <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>Restaurando la arquitectura del vínculo afectivo.</p>
+                        <div style={{ marginTop: '2rem', fontWeight: 600 }}>75k / sesión</div>
+                    </div >
+
+                    {/* Card 4: Location A */}
+                    <div className="glass-modern" style={{ gridColumn: 'span 3', padding: '3rem', background: 'var(--bg-dark)', color: 'white' }}>
+                        <MapPin size={24} color="var(--accent-gold)" style={{ marginBottom: '1.5rem' }} />
+                        <p style={{ fontSize: '0.8rem', letterSpacing: '0.1em', opacity: 0.5 }}>SEDE CENTRAL</p>
+                        <h4 className="instrument-serif" style={{ fontSize: '1.5rem', margin: '0.5rem 0' }}>Barros Arana 188</h4>
+                        <div style={{ marginTop: '1.5rem', fontSize: '0.8rem' }}>M, W, F 09:15 - 21:30</div>
+                    </div>
+
+                </div>
+            </section>
+
+            {/* Interactive Contact Banner */}
+            <section style={{ padding: '8vw 4vw', background: 'white' }}>
+                <div className="glass-modern" style={{
+                    padding: '6rem 4vw',
+                    background: 'linear-gradient(135deg, #121413 0%, #1d2120 100%)',
+                    color: 'white',
+                    textAlign: 'center',
+                    position: 'relative',
+                    overflow: 'hidden'
+                }}>
+                    {/* Animated Glow */}
+                    <div style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        width: '400px',
+                        height: '400px',
+                        background: 'var(--accent-sage)',
+                        filter: 'blur(150px)',
+                        opacity: 0.15,
+                        zIndex: 0,
+                        transform: 'translate(-50%, -50%)'
+                    }}></div>
+
+                    <div style={{ position: 'relative', zIndex: 1 }}>
+                        <h2 className="instrument-serif" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', marginBottom: '3rem' }}>Hablemos con <span style={{ color: 'var(--accent-gold)' }}>Privacidad</span>.</h2>
+                        <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' }}>
+                            <a href="https://wa.me/56978789839" className="magnetic-btn" style={{ background: 'var(--accent-gold)', color: 'black' }}>
+                                <MessageCircle size={20} /> WhatsApp Directo
+                            </a>
+                            <a href="tel:+56978789839" className="glass-modern" style={{
+                                padding: '1.5rem 3.5rem',
+                                color: 'white',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '1rem',
+                                textDecoration: 'none',
+                                fontWeight: 600,
+                                border: '1px solid rgba(255,255,255,0.1)'
+                            }}>
+                                <Phone size={20} /> +56 9 7878 9839
+                            </a>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Parallax-like Quote Section */}
-            <section style={{ padding: '12rem 0', textAlign: 'center', backgroundColor: 'var(--bg-serene)', backgroundImage: 'radial-gradient(var(--accent-light) 0.5px, transparent 0.5px)', backgroundSize: '40px 40px' }}>
-                <div className="container">
-                    <p className="serif" style={{ fontSize: '2.5rem', color: 'var(--text-soft)', lineHeight: '1.4', maxWidth: '1000px', margin: '0 auto' }}>
-                        "El acompañamiento de alto nivel no es una transacción, es la construcción de un refugio para la mente que lidera."
-                    </p>
-                    <div style={{ marginTop: '3rem', fontSize: '0.9rem', letterSpacing: '0.4em', color: 'var(--accent)', textTransform: 'uppercase' }}>Estándar de Seguridad Mental</div>
+            {/* Footer 2026 */}
+            <footer style={{ padding: '6rem 4vw', background: 'var(--bg-canvas)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '4rem' }}>
+                    <div>
+                        <h2 className="instrument-serif" style={{ fontSize: '3rem' }}>Claudio Fernández</h2>
+                        <p style={{ opacity: 0.5, marginTop: '1rem' }}>Psicólogo Clínico · Concepción · {new Date().getFullYear()}</p>
+                    </div>
+                    <div style={{ display: 'flex', gap: '4rem' }}>
+                        <div style={{ textAlign: 'right' }}>
+                            <p style={{ fontSize: '0.7rem', letterSpacing: '0.2em', opacity: 0.5 }}>UBICACIONES</p>
+                            <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>Centro Concepción</p>
+                            <p style={{ fontSize: '0.9rem' }}>Andalué San Pedro</p>
+                        </div>
+                    </div>
                 </div>
-            </section>
-        </main>
+            </footer>
+        </div>
     );
 }

@@ -1,12 +1,8 @@
 import './globals.css';
-import { Inter, Playfair_Display } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata = {
-  title: 'Ps. Claudio Fernández | Psicoterapia en Concepción',
-  description: 'Psicoterapia individual y de pareja en Concepción y San Pedro de la Paz (Andalué). Espacio profesional para el bienestar emocional y vínculos saludables.',
+  title: 'Ps. Claudio Fernández | Psicología de Alta Fidelidad',
+  description: 'Psicoterapia privada y de pareja en Concepción. Estándar de excelencia clínica y absoluta discreción.',
 };
 
 export default function RootLayout({
@@ -15,48 +11,33 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="es">
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        <nav className="glass" style={{
+        <nav className="glass-modern" style={{
           position: 'fixed',
-          top: 0,
-          width: '100%',
+          top: '2rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 'min(90%, 1200px)',
           zIndex: 1000,
-          padding: '1.5rem 8%',
+          padding: '1rem 2.5rem',
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          border: '1px solid rgba(255,255,255,0.1)'
         }}>
-          <div className="serif" style={{ fontSize: '1.4rem', color: 'var(--primary)', letterSpacing: '0.05em' }}>
+          <div className="instrument-serif" style={{ fontSize: '1.6rem', color: 'var(--primary)', letterSpacing: '-0.02em', color: '#1a1a1a' }}>
             Ps. Claudio Fernández
           </div>
-          <div style={{ display: 'flex', gap: '2.5rem', alignItems: 'center' }}>
-            <a href="#inicio" style={{ textDecoration: 'none', color: 'var(--text-main)', fontSize: '0.9rem', fontWeight: '500' }}>Inicio</a>
-            <a href="#servicios" style={{ textDecoration: 'none', color: 'var(--text-main)', fontSize: '0.9rem', fontWeight: '500' }}>Servicios</a>
-            <a href="#contacto" className="btn-accent" style={{ fontSize: '0.9rem' }}>Agendar Sesión</a>
+          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+            <a href="#servicios" style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.1em' }}>SERVICIOS</a>
+            <a href="https://wa.me/56978789839" className="magnetic-btn" style={{ padding: '0.8rem 1.8rem', fontSize: '0.75rem' }}>AGENDAR</a>
           </div>
         </nav>
         {children}
-        <footer style={{ backgroundColor: 'var(--primary)', color: 'var(--white)', padding: '5rem 8%', marginTop: '4rem' }}>
-          <div className="grid-2">
-            <div>
-              <h2 className="serif" style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Ps. Claudio Fernández</h2>
-              <p style={{ opacity: 0.7, maxWidth: '400px', fontSize: '0.9rem' }}>
-                Dedicado a proporcionar un espacio de escucha y sanación profunda para individuos y parejas en el corazón de Concepción.
-              </p>
-            </div>
-            <div style={{ textAlign: 'right' }}>
-              <p style={{ fontWeight: '500', marginBottom: '0.5rem' }}>Contacto Directo</p>
-              <p style={{ fontSize: '1.5rem', color: 'var(--accent)' }}>+56 9 7878 9839</p>
-            </div>
-          </div>
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '4rem', paddingTop: '2rem', fontSize: '0.8rem', opacity: 0.5 }}>
-            © {new Date().getFullYear()} Ps. Claudio Fernández. Todos los derechos reservados.
-          </div>
-        </footer>
       </body>
     </html>
   );
