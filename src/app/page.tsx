@@ -1,294 +1,262 @@
-import { ArrowUpRight, Phone, MapPin, Calendar, Lock, Sparkles, MessageCircle, Heart, User, CheckCircle2 } from 'lucide-react';
+"use client";
 
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Phone, MapPin, CheckCircle2, MessageCircle, X, ArrowRight, Zap, Clock } from "lucide-react";
+
+// Componente derivativo de Bolton Template
 export default function HomePage() {
-    return (
-        <div style={{ position: 'relative' }}>
-            {/* Hidden FAQ Schema for Featured Snippets */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "FAQPage",
-                        "mainEntity": [
-                            {
-                                "@type": "Question",
-                                "name": "¿Cuál es el valor de la sesión de psicoterapia individual en Concepción?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "La sesión de psicoterapia individual tiene un valor de $65.000 (CLP). Es un servicio premium enfocado en alta exigencia y confidencialidad."
-                                }
-                            },
-                            {
-                                "@type": "Question",
-                                "name": "¿Cuál es el costo de la terapia de pareja en Concepción?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "La terapia matrimonial y de vínculos (terapia de pareja) tiene una inversión de $75.000 (CLP) por sesión, con dedicación exclusiva y metodologías clínicas rigurosas."
-                                }
-                            },
-                            {
-                                "@type": "Question",
-                                "name": "¿Dónde atiende el Ps. Claudio Fernández en Concepción?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "Atiende de forma presencial en dos sedes: Concepción Centro (Barros Arana 188) los días Lunes, Miércoles y Viernes, y en San Pedro de la Paz (Andalué) los días Martes."
-                                }
-                            },
-                            {
-                                "@type": "Question",
-                                "name": "¿Cómo encontrar un psicólogo excelente en Concepción?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "El Ps. Claudio Fernández Bolton es psicólogo clínico con más de 15 años de experiencia atendiendo en Concepción. Especialista en psicoterapia individual y terapia de pareja. Consulta en Barros Arana 188, Concepción. Teléfono +56978789839."
-                                }
-                            }
-                        ]
-                    })
-                }}
-            />
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [step, setStep] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
+  
+  const [leadData, setLeadData] = useState({
+    when: '',
+    schedule: '',
+    name: '',
+    phone: '',
+    userEmail: 'cfernandez@psyclaudio.cl',
+    source: 'Bolton Template'
+  });
 
-            {/* Immersive Hero Section */}
-            <section id="inicio" style={{
-                position: 'relative',
-                minHeight: '100vh',
-                background: '#0a0b0a',
-                padding: '12rem 4vw 6rem',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                overflow: 'hidden'
-            }}>
-                {/* Background Immersive Image */}
-                <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backgroundImage: 'url("/abstract-hero.png")',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    opacity: 0.5,
-                    zIndex: 0,
-                    filter: 'blur(100px) saturate(1.5)',
-                    transform: 'scale(1.2)'
-                }}></div>
+  const CLIENTE_SERVICIO = "Atención Psicológica y Terapia de Pareja";
+  const CLIENTE_NOMBRE = "Claudio Fernández Bolton";
+  const PROFESION = "Psicólogo Clínico Especialista en Vínculos";
+  const UBICACION = "Concepción / San Pedro de la Paz";
+  const TELEFONO = "+56 9 7878 9839";
+  const TELEFONO_LIMPIO = "56978789839";
+  const URL_IMAGEN = "/claudio-portrait.png";
+  const SLOGAN = "Recuperando la arquitectura emocional de la relación.";
+  const EXPERIENCIA_DESC = "Psicólogo con más de 15 años de experiencia clínica. Experto en alta complejidad clínica y resolución de crisis de pareja.";
+  const TEXTO_GARANTIA = "Si la primera sesión no te parece GENIAL, te devolvemos el dinero. Confianza absoluta en tu proceso.";
 
-                <div className="reveal" style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
-                    <div className="bento-grid">
+  const ESP_1 = "Terapia de Pareja y Crisis";
+  const ESP_2 = "Psicoterapia Individual de Adultos";
+  const ESP_3 = "Especialista en Vínculos y Comunicación";
 
-                        {/* Main Title Block */}
-                        <div style={{ gridColumn: 'span 8', padding: '4rem 0' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-                                <span style={{ height: '1px', width: '40px', background: 'var(--accent-gold)' }}></span>
-                                <span style={{ color: 'var(--accent-gold)', textTransform: 'uppercase', letterSpacing: '0.4em', fontSize: '0.75rem', fontWeight: 600 }}>Psicología de Alta Fidelidad</span>
-                            </div>
+  const openModal = () => { setIsModalOpen(true); setStep(1); setSubmitted(false); };
+  const closeModal = () => setIsModalOpen(false);
 
-                            <h1 className="instrument-serif" style={{ fontSize: 'clamp(3.5rem, 10vw, 7.5rem)', color: 'white', lineHeight: '1', letterSpacing: '-0.03em' }}>
-                                Ps. Claudio <br />
-                                <span style={{ fontStyle: 'italic', opacity: 0.8 }}>Fernández</span>
-                            </h1>
+  const handleNextStep = (currentStep: number, value?: string) => {
+    if (value) {
+      if (currentStep === 1) setLeadData(prev => ({ ...prev, when: value }));
+      if (currentStep === 2) setLeadData(prev => ({ ...prev, schedule: value }));
+    }
+    setStep(currentStep + 1);
+  };
 
-                            <div style={{ marginTop: '4rem', display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
-                                <a href="https://wa.me/56978789839" className="magnetic-btn">
-                                    Agendar Sesión <ArrowUpRight size={20} />
-                                </a>
-                                <div className="glass-modern" style={{ padding: '1.2rem 2.5rem', display: 'flex', alignItems: 'center', gap: '1rem', color: 'white', borderColor: 'rgba(255,255,255,0.1)' }}>
-                                    <div style={{ width: '8px', height: '8px', background: '#4ade80', borderRadius: '50%', boxShadow: '0 0 10px #4ade80' }}></div>
-                                    <span style={{ fontSize: '0.9rem', letterSpacing: '0.1em', fontWeight: 300 }}>DISPONIBILIDAD PARA ESTA SEMANA</span>
-                                </div>
-                            </div>
-                        </div>
+  const submitLead = async () => {
+    // Aquí podrías disparar conversión si tuvieras gtag
+    setSubmitted(true);
+    setStep(5); // Final Step
+    
+    // Simular el post al servidor si existiera
+    try {
+        await fetch('/api/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                patientData: {
+                    name: leadData.name,
+                    phone: leadData.phone,
+                    when: leadData.when,
+                    schedule: leadData.schedule
+                },
+                therapistEmail: leadData.userEmail,
+                therapistName: CLIENTE_NOMBRE
+            })
+        });
+    } catch (_) { /* silent */ }
+  };
 
-                        {/* Side Floating Badge */}
-                        <div style={{ gridColumn: 'span 4', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                            <div className="float" style={{
-                                width: '300px',
-                                height: '300px',
-                                borderRadius: '50%',
-                                border: '1px solid rgba(255,255,255,0.1)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                background: 'rgba(255,255,255,0.02)',
-                                backdropFilter: 'blur(20px)'
-                            }}>
-                                <div style={{ textAlign: 'center' }}>
-                                    <Sparkles color="var(--accent-gold)" size={40} style={{ marginBottom: '1rem' }} />
-                                    <p className="instrument-serif" style={{ color: 'white', fontSize: '1.5rem', fontStyle: 'italic' }}>Discreción <br />Absoluta</p>
-                                </div>
-                            </div>
-                        </div>
+  return (
+    <div className="min-h-screen bg-[#f1f5f9] text-[#1e293b] flex flex-col font-sans overflow-x-hidden">
+      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet" />
 
-                    </div>
-                </div>
-
-                {/* Scroll Indicator */}
-                <div style={{
-                    position: 'absolute',
-                    bottom: '4rem',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '1rem',
-                    opacity: 0.5
-                }}>
-                    <p style={{ color: 'white', fontSize: '0.7rem', letterSpacing: '0.3em' }}>SCROLL</p>
-                    <div style={{ height: '60px', width: '1px', background: 'linear-gradient(to bottom, white, transparent)' }}></div>
-                </div>
-            </section>
-
-            {/* 2026 Bento Overview */}
-            <section style={{ padding: '4vw', background: 'var(--bg-canvas)' }}>
-                <div className="bento-grid">
-
-                    {/* Card 1: The Portrait (Visual Excellence) */}
-                    <div className="dark-card" style={{ gridColumn: 'span 5', gridRow: 'span 2', overflow: 'hidden', position: 'relative', minHeight: '600px' }}>
-                        <img src="/claudio-portrait.png" alt="Retrato profesional del Ps. Claudio Fernández, psicólogo clínico en su consulta premium de Concepción y Andalué" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
-                        <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem' }}>
-                            <h3 className="instrument-serif" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Ciencia y Empatía</h3>
-                            <p style={{ opacity: 0.6, fontSize: '1rem', fontWeight: 300 }}>Especialista en procesos críticos y alto desempeño emocional.</p>
-                        </div>
-                    </div>
-
-                    {/* Card 2: Individual Therapy */}
-                    <div className="glass-modern" style={{ gridColumn: 'span 7', padding: '4rem', position: 'relative' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                            <div>
-                                <span style={{ padding: '0.5rem 1rem', border: '1px solid var(--accent-sage)', borderRadius: '100px', fontSize: '0.7rem', letterSpacing: '0.1em' }}>ÁREA INDIVIDUAL</span>
-                                <h2 className="instrument-serif" style={{ fontSize: '4rem', marginTop: '2rem', marginBottom: '1.5rem' }}>Psicoterapia Individual</h2>
-                            </div>
-                            <User size={60} strokeWidth={1} color="var(--accent-sage)" />
-                        </div>
-                        <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', maxWidth: '500px' }}>
-                            Redefina su trayectoria personal. Un espacio de alta fidelidad para el ejecutivo y el profesional que busca claridad.
-                        </p>
-                        <div style={{ marginTop: '3rem', fontSize: '1.8rem' }} className="instrument-serif">
-                            65k / sesión <span style={{ fontSize: '0.8rem', opacity: 0.5, fontStyle: 'italic' }}>Inversión sugerida</span>
-                        </div>
-                    </div>
-
-                    {/* Card 3: Couples Therapy */}
-                    <a href="/terapia-de-pareja-concepcion" style={{ textDecoration: 'none', color: 'inherit', gridColumn: 'span 4', display: 'block' }} className="hover-scale">
-                        <div className="glass-modern" style={{ padding: '3rem', height: '100%' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                                <Heart size={32} color="var(--accent-gold)" />
-                                <ArrowUpRight size={24} color="var(--accent-gold)" style={{ opacity: 0.5 }} />
-                            </div>
-                            <h3 className="instrument-serif" style={{ fontSize: '2rem', marginBottom: '1rem' }}>Terapia de Pareja</h3>
-                            <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)' }}>Restaurando la arquitectura del vínculo afectivo.</p>
-                            <div style={{ marginTop: '2rem', fontWeight: 600 }}>75k / sesión</div>
-                        </div>
-                    </a>
-
-                    {/* Card 4: Location A */}
-                    <div className="glass-modern" style={{ gridColumn: 'span 3', padding: '3rem', background: 'var(--bg-dark)', color: 'white' }}>
-                        <MapPin size={24} color="var(--accent-gold)" style={{ marginBottom: '1.5rem' }} />
-                        <p style={{ fontSize: '0.8rem', letterSpacing: '0.1em', opacity: 0.5 }}>SEDE CENTRAL</p>
-                        <h4 className="instrument-serif" style={{ fontSize: '1.5rem', margin: '0.5rem 0' }}>Barros Arana 188</h4>
-                        <div style={{ marginTop: '1.5rem', fontSize: '0.8rem' }}>M, W, F 09:15 - 21:30</div>
-                    </div>
-
-                </div>
-            </section>
-
-            {/* Interactive Contact Banner */}
-            <section style={{ padding: '8vw 4vw', background: 'white' }}>
-                <div className="glass-modern" style={{
-                    padding: '6rem 4vw',
-                    background: 'linear-gradient(135deg, #121413 0%, #1d2120 100%)',
-                    color: 'white',
-                    textAlign: 'center',
-                    position: 'relative',
-                    overflow: 'hidden'
-                }}>
-                    {/* Animated Glow */}
-                    <div style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        width: '400px',
-                        height: '400px',
-                        background: 'var(--accent-sage)',
-                        filter: 'blur(150px)',
-                        opacity: 0.15,
-                        zIndex: 0,
-                        transform: 'translate(-50%, -50%)'
-                    }}></div>
-
-                    <div style={{ position: 'relative', zIndex: 1 }}>
-                        <h2 className="instrument-serif" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', marginBottom: '3rem' }}>Hablemos con <span style={{ color: 'var(--accent-gold)' }}>Privacidad</span>.</h2>
-                        <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' }}>
-                            <a href="https://wa.me/56978789839" className="magnetic-btn" style={{ background: 'var(--accent-gold)', color: 'black' }}>
-                                <MessageCircle size={20} /> WhatsApp Directo
-                            </a>
-                            <a href="tel:+56978789839" className="glass-modern" style={{
-                                padding: '1.5rem 3.5rem',
-                                color: 'white',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '1rem',
-                                textDecoration: 'none',
-                                fontWeight: 600,
-                                border: '1px solid rgba(255,255,255,0.1)'
-                            }}>
-                                <Phone size={20} /> +56 9 7878 9839
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA Banner: Terapia de Pareja */}
-            <section style={{ padding: '5vw 4vw', background: '#1a3a2a' }}>
-                <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-                    <p style={{ color: '#7ecfa0', fontWeight: 700, letterSpacing: '0.15em', fontSize: '0.8rem', marginBottom: '1rem' }}>PROGRAMA ESPECIALIZADO</p>
-                    <h2 className="instrument-serif" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'white', marginBottom: '1.5rem' }}>
-                        Terapia de Pareja en <span style={{ color: '#7ecfa0' }}>Concepción</span>
-                    </h2>
-                    <p style={{ color: 'rgba(255,255,255,0.65)', maxWidth: '550px', margin: '0 auto 2.5rem', fontSize: '1.1rem' }}>
-                        Restaurando el vínculo emocional con metodología clínica de alta exigencia. $75.000 / sesión conjunta.
-                    </p>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                        <a href="/reservas-parejas" style={{ background: '#7ecfa0', color: '#1a3a2a', borderRadius: '100px', padding: '1.2rem 3rem', fontWeight: 800, textDecoration: 'none', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                            Reservar Hora Ahora →
-                        </a>
-                        <a href="/terapia-de-pareja-concepcion" style={{ border: '2px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: '100px', padding: '1.2rem 3rem', fontWeight: 600, textDecoration: 'none', fontSize: '1rem' }}>
-                            Ver más información
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            {/* Footer 2026 */}
-            <footer style={{ padding: '6rem 4vw', background: 'var(--bg-canvas)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '4rem' }}>
-                    <div>
-                        <h2 className="instrument-serif" style={{ fontSize: '3rem' }}>Claudio Fernández</h2>
-                        <p style={{ opacity: 0.5, marginTop: '1rem', marginBottom: '1rem' }}>Psicólogo Clínico · Concepción · {new Date().getFullYear()}</p>
-
-                        {/* E-E-A-T Credential Badges */}
-                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0,0,0,0.03)', padding: '0.5rem 1rem', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
-                                <CheckCircle2 size={14} color="var(--accent-sage)" /> Profesional Acreditado
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(0,0,0,0.03)', padding: '0.5rem 1rem', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
-                                <Lock size={14} color="var(--accent-sage)" /> Secreto Profesional Garantizado
-                            </div>
-                        </div>
-                    </div>
-                    <div style={{ display: 'flex', gap: '4rem' }}>
-                        <div style={{ textAlign: 'right' }}>
-                            <p style={{ fontSize: '0.7rem', letterSpacing: '0.2em', opacity: 0.5 }}>UBICACIONES</p>
-                            <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>Centro Concepción</p>
-                            <p style={{ fontSize: '0.9rem' }}>Andalué San Pedro</p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+      {/* HEADER */}
+      <header className="bg-white border-b border-black/5 py-4 px-[5%] flex justify-between items-center z-10 shrink-0">
+        <div className="flex flex-col">
+          <h1 className="text-xl lg:text-3xl font-black text-[#1e4b6b] tracking-tighter leading-tight">{CLIENTE_SERVICIO}</h1>
+          <div className="flex items-center gap-1 text-slate-500 text-[10px] lg:text-sm font-semibold">
+            <MapPin size={12} className="inline lg:hidden" />
+            <MapPin size={16} className="hidden lg:inline" />
+            <span>{UBICACION}</span>
+          </div>
         </div>
-    );
+        <div className="text-right">
+          <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest hidden lg:block">Contacto Directivo</p>
+          <div className="flex items-center gap-2 text-md lg:text-xl font-bold text-[#2c6a91]">
+            <Phone size={14} className="inline lg:hidden" />
+            <Phone size={20} className="hidden lg:inline" />
+            <a href={`tel:${TELEFONO}`}>{TELEFONO}</a>
+          </div>
+        </div>
+      </header>
+
+      {/* MAIN CONTAINER */}
+      <main className="flex-1 p-2 lg:p-6 flex items-center justify-center overflow-auto lg:overflow-hidden">
+        <div className="bg-white w-full max-w-[1400px] rounded-3xl shadow-2xl border border-white/80 overflow-hidden flex flex-col lg:grid lg:grid-cols-[20%_60%_20%] lg:h-[82vh]">
+          
+          {/* Column Izquierda (Desktop Order 1) */}
+          <div className="p-6 lg:p-8 flex flex-col items-center bg-[#f8fafc] border-b lg:border-b-0 lg:border-r border-black/5 order-3 lg:order-1">
+            <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="w-28 lg:w-40 h-28 lg:h-40 rounded-full overflow-hidden border-4 lg:border-8 border-white shadow-lg mb-6"
+            >
+              <img src={URL_IMAGEN} alt={CLIENTE_NOMBRE} className="w-full h-full object-cover" />
+            </motion.div>
+            <p className="text-[10px] lg:text-sm text-slate-500 font-semibold text-center leading-relaxed mb-6 italic">
+              "{SLOGAN}"
+            </p>
+            <button onClick={openModal} className="bg-white text-[#2c6a91] border border-[#2c6a91] px-4 py-2 rounded-full text-[9px] lg:text-xs font-black hover:bg-[#2c6a91] hover:text-white transition-all uppercase tracking-wider">
+              SOLICITAR INFORMACIÓN
+            </button>
+          </div>
+
+          {/* Column Central (Main Info) */}
+          <div className="p-6 lg:p-12 flex flex-col justify-start lg:pt-16 order-1 lg:order-2 overflow-y-auto">
+            <h2 className="text-3xl lg:text-6xl font-black text-slate-800 tracking-tighter mb-2 text-center lg:text-left">
+              {CLIENTE_NOMBRE}
+            </h2>
+            <p className="text-lg lg:text-2xl font-bold text-[#2c6a91] mb-8 text-center lg:text-left">
+              {PROFESION}
+            </p>
+            
+            <div className="bg-slate-50 p-6 lg:p-8 rounded-2xl border border-black/5">
+              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-4">Especialidades</p>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <li className="flex items-center gap-2 text-xs lg:text-sm font-semibold text-slate-600"><CheckCircle2 size={16} className="text-green-500" /> {ESP_1}</li>
+                <li className="flex items-center gap-2 text-xs lg:text-sm font-semibold text-slate-600"><CheckCircle2 size={16} className="text-green-500" /> {ESP_2}</li>
+                <li className="flex items-center gap-2 text-xs lg:text-sm font-semibold text-slate-600"><CheckCircle2 size={16} className="text-green-500" /> {ESP_3}</li>
+              </ul>
+            </div>
+
+            <p className="mt-8 text-slate-500 text-xs lg:text-base leading-relaxed text-center lg:text-left max-w-2xl">
+              {EXPERIENCIA_DESC}
+            </p>
+          </div>
+
+          {/* Column Derecha (Action) */}
+          <div className="p-8 lg:p-12 flex flex-col items-center justify-center lg:pt-20 bg-[#1e293b] text-white order-2 lg:order-3">
+            <div className="bg-white/5 p-6 rounded-2xl border border-white/10 w-full mb-12 text-center">
+              <p className="font-black text-[9px] text-slate-400 uppercase mb-3 tracking-widest">GARANTÍA BOLTON</p>
+              <p className="text-xs lg:text-sm leading-relaxed opacity-90">
+                {TEXTO_GARANTIA}
+              </p>
+            </div>
+
+            <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={openModal} 
+                className="w-full bg-blue-600 text-white p-5 rounded-2xl font-black text-lg lg:text-xl shadow-2xl flex items-center justify-center gap-3"
+            >
+              RESERVAR
+              <ArrowRight size={20} />
+            </motion.button>
+          </div>
+
+        </div>
+      </main>
+
+      {/* WHATSAPP FLOAT */}
+      <a href={`https://wa.me/${TELEFONO_LIMPIO}`} className="fixed bottom-6 right-6 bg-[#25d366] text-white w-14 lg:w-16 h-14 lg:h-16 rounded-full shadow-2xl z-50 flex items-center justify-center hover:scale-110 transition-transform">
+        <MessageCircle size={32} />
+      </a>
+
+      {/* TYPEFORM MODAL */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-slate-900/95 z-[1000] flex items-center justify-center backdrop-blur-lg p-4"
+          >
+            <button onClick={closeModal} className="absolute top-6 right-6 text-white/50 hover:text-white"><X size={32} /></button>
+            
+            <div className="w-full max-w-xl text-white">
+                <AnimatePresence mode="wait">
+                    
+                    {step === 1 && (
+                        <motion.div key="st1" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="flex flex-col gap-6">
+                            <h2 className="text-2xl lg:text-4xl font-black mb-4">¿Para cuándo necesitas la atención?</h2>
+                            <div className="flex flex-col gap-4">
+                                <button className="bg-white/5 border border-white/10 p-6 rounded-2xl cursor-pointer hover:bg-blue-600/20 hover:border-blue-500 transition-all text-left text-xl font-bold" onClick={() => handleNextStep(1, "Lo antes posible")}>🚀 Lo antes posible</button>
+                                <button className="bg-white/5 border border-white/10 p-6 rounded-2xl cursor-pointer hover:bg-blue-600/20 hover:border-blue-500 transition-all text-left text-xl font-bold" onClick={() => handleNextStep(1, "Próxima semana")}>📅 Para la próxima semana</button>
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {step === 2 && (
+                        <motion.div key="st2" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="flex flex-col gap-6">
+                            <h2 className="text-2xl lg:text-4xl font-black mb-4">¿En qué horario te acomodaría más?</h2>
+                            <div className="flex flex-col gap-4">
+                                <button className="bg-white/5 border border-white/10 p-6 rounded-2xl cursor-pointer hover:bg-blue-600/20 hover:border-blue-500 transition-all text-left text-xl font-bold" onClick={() => handleNextStep(2, "Mañana")}>🌅 Mañana</button>
+                                <button className="bg-white/5 border border-white/10 p-6 rounded-2xl cursor-pointer hover:bg-blue-600/20 hover:border-blue-500 transition-all text-left text-xl font-bold" onClick={() => handleNextStep(2, "Tarde")}>☀️ Tarde</button>
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {step === 3 && (
+                        <motion.div key="st3" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="flex flex-col gap-6">
+                            <h2 className="text-2xl lg:text-4xl font-black mb-4">Tu nombre completo:</h2>
+                            <input 
+                                type="text" 
+                                autoFocus
+                                className="bg-transparent border-b-4 border-white/20 text-3xl lg:text-5xl font-black outline-none py-4 focus:border-blue-500 transition-colors w-full"
+                                placeholder="Escribe aquí..."
+                                value={leadData.name}
+                                onChange={(e) => setLeadData({...leadData, name: e.target.value})}
+                                onKeyDown={(e) => e.key === 'Enter' && leadData.name && handleNextStep(3)}
+                            />
+                            <div className="flex justify-between items-center mt-6">
+                                <p className="text-white/40 text-sm font-bold uppercase tracking-widest">Presiona ENTER para seguir</p>
+                                <button onClick={() => leadData.name && handleNextStep(3)} className="bg-blue-600 px-10 py-4 rounded-2xl font-black text-xl">SIGUIENTE</button>
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {step === 4 && (
+                        <motion.div key="st4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="flex flex-col gap-6">
+                            <h2 className="text-2xl lg:text-4xl font-black mb-4">Tu WhatsApp de contacto:</h2>
+                            <div className="flex items-center gap-4 text-3xl lg:text-5xl border-b-4 border-white/20 focus-within:border-blue-500 transition-colors">
+                                <span className="text-white/40 font-black">+56</span>
+                                <input 
+                                    type="tel" 
+                                    autoFocus
+                                    className="bg-transparent flex-1 font-black outline-none py-4"
+                                    placeholder="9 1234 5678"
+                                    value={leadData.phone}
+                                    onChange={(e) => setLeadData({...leadData, phone: e.target.value})}
+                                    onKeyDown={(e) => e.key === 'Enter' && leadData.phone && submitLead()}
+                                />
+                            </div>
+                            <div className="flex flex-col gap-4 mt-8">
+                                <button onClick={() => leadData.phone && submitLead()} className="bg-green-500 px-10 py-6 rounded-2xl font-black text-2xl shadow-xl shadow-green-500/20">ENVIAR SOLICITUD AHORA</button>
+                                <p className="text-center text-white/40 text-sm font-bold">Respuesta inmediata via WhatsApp</p>
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {step === 5 && (
+                        <motion.div key="st5" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
+                            <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-8">
+                                <CheckCircle2 size={48} />
+                            </div>
+                            <h2 className="text-4xl lg:text-5xl font-black mb-4">¡Solicitud Enviada! 🎉</h2>
+                            <p className="text-xl text-white/60 mb-12">Claudio te contactará personalmente a la brevedad.</p>
+                            <button onClick={closeModal} className="bg-white/10 hover:bg-white/20 px-12 py-4 rounded-full font-black border border-white/10 transition-colors">CERRAR</button>
+                        </motion.div>
+                    )}
+
+                </AnimatePresence>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+    </div>
+  );
 }
