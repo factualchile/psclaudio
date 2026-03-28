@@ -61,7 +61,7 @@ function BookingPopup({ onClose }: { onClose: () => void }) {
           {step === 3 && (
             <motion.div key="3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
               <h3 className="text-2xl font-black mb-8">¿Cuál es tu nombre?</h3>
-              <input autoFocus type="text" className="w-full p-4 border-2 border-blue-600 rounded-xl text-xl font-bold mb-6" value={formData.nombre} onChange={e => setLeadData({ ...formData, nombre: e.target.value })} />
+              <input autoFocus type="text" className="w-full p-4 border-2 border-blue-600 rounded-xl text-xl font-bold mb-6" value={formData.nombre} onChange={e => setFormData({ ...formData, nombre: e.target.value })} />
               <button disabled={!formData.nombre} onClick={next} className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold">Continuar</button>
             </motion.div>
           )}
